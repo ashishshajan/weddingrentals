@@ -1,0 +1,19 @@
+Downloaded on 2026-03-30
+
+Provider:
+- https://loremflickr.com (keyword-based stock image endpoint)
+
+Assets:
+- hero-wedding.jpg -> https://loremflickr.com/1600/900/luxury,car,wedding
+- cars/bmw-5.jpg -> https://loremflickr.com/1200/800/bmw,car
+- cars/audi-a6.jpg -> https://loremflickr.com/1200/800/audi,car
+- cars/volvo-s90.jpg -> https://loremflickr.com/1200/800/volvo,car
+- cars/bmw-7.jpg -> https://loremflickr.com/1200/800/bmw,luxury,car
+- cars/audi-a8.jpg -> https://loremflickr.com/1200/800/audi,luxury,car
+- cars/luxury-sedan.jpg -> https://loremflickr.com/1200/800/mercedes,sedan,car
+- services/taxi.jpg -> https://loremflickr.com/1200/700/taxi,car
+- services/travellers.jpg -> https://loremflickr.com/1200/700/bus,traveller,vehicle
+- services/chauffeur.jpg -> https://loremflickr.com/1200/700/chauffeur,car,driver
+
+Logo:
+- logo.svg -> custom vector created locally for Adham's Auto World.

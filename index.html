@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Adham Wedding Car Rental — Luxury wedding car rentals with premium chauffeurs. BMW, Audi, Volvo. Elegant, punctual, and unforgettable."
+      content="Adham's Auto World — Luxury wedding car rentals with premium chauffeurs. BMW, Audi, Volvo. Elegant, punctual, and unforgettable."
     />
-    <title>Adham Wedding Car Rental — Luxury Wedding Cars</title>
+    <title>Adham's Auto World — Luxury Wedding Cars</title>
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="images/logo.svg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,11 +25,18 @@
 
     <header class="site-header" role="banner">
       <nav class="nav" aria-label="Primary">
-        <a class="brand" href="#home" aria-label="Adham Wedding Car Rental">
-          <span class="brand-mark" aria-hidden="true"></span>
+        <a class="brand" href="#home" aria-label="Adham's Auto World">
+          <img
+            class="brand-logo"
+            src="images/logo.svg"
+            width="42"
+            height="42"
+            alt=""
+            decoding="async"
+          />
           <span class="brand-text">
-            <span class="brand-name">Adham</span>
-            <span class="brand-sub">Wedding Car Rental</span>
+            <span class="brand-name">Adham's Auto World</span>
+            <span class="brand-sub">Luxury Wedding Cars</span>
           </span>
         </a>
 
@@ -49,8 +58,88 @@
     </header>
 
     <main id="home" class="page">
+      <!-- About -->
+      <section id="about" class="section">
+        <div class="container two-col">
+          <div>
+            <h2 class="section-title">About Adham's Auto World</h2>
+            <p class="section-lede">
+              A wedding deserves a grand arrival. We provide luxury wedding car rentals designed for
+              elegance, comfort, and flawless timing.
+            </p>
+            <p class="muted">
+              Our chauffeurs are trained for wedding-day coordination—calm, punctual, and
+              professional. Expect pristine vehicles, premium interiors, and a smooth experience from
+              pickup to drop-off.
+            </p>
+          </div>
+
+          <div class="about-panel" role="note" aria-label="What you can expect">
+            <ul class="checklist">
+              <li>Carefully maintained premium sedans</li>
+              <li>Polished, uniformed chauffeurs</li>
+              <li>Flexible hourly packages for events & photos</li>
+              <li>Wedding décor option (ribbons/flowers) on request</li>
+              <li>Clear pricing with no surprises</li>
+            </ul>
+            <a class="btn btn-outline" href="#booking">Book a Wedding Car</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="service-tabs-wrap service-tabs-top">
+        <div class="container">
+          <div class="service-tabs" role="tablist" aria-label="Booking options">
+            <button
+              id="tab-wedding"
+              type="button"
+              class="service-tab service-tab-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="service-wedding"
+              data-service-tab="wedding"
+            >
+              Wedding Rentals
+            </button>
+            <button
+              id="tab-taxi"
+              type="button"
+              class="service-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="service-taxi"
+              data-service-tab="taxi"
+            >
+              Taxi
+            </button>
+            <button
+              id="tab-travellers"
+              type="button"
+              class="service-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="service-travellers"
+              data-service-tab="travellers"
+            >
+              Travellers and Airbuses
+            </button>
+            <button
+              id="tab-drivers"
+              type="button"
+              class="service-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="service-drivers"
+              data-service-tab="drivers"
+            >
+              Drivers/Chauffeurs
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Hero -->
-      <section class="hero" aria-label="Hero">
+      <section class="hero" aria-label="Hero" data-service-visible="wedding">
         <div class="container hero-grid">
           <div class="hero-copy">
             <p class="kicker">Luxury wedding transportation</p>
@@ -88,6 +177,15 @@
                 precision.
               </p>
             </div>
+            <img
+              class="hero-card-image"
+              src="images/cars/bmw-7.jpg"
+              alt="Premium chauffeur wedding car"
+              width="1200"
+              height="800"
+              loading="lazy"
+              decoding="async"
+            />
             <div class="hero-badges" aria-hidden="true">
               <span class="badge">White-glove service</span>
               <span class="badge">Premium sedans</span>
@@ -98,37 +196,8 @@
         <div class="hero-fade" aria-hidden="true"></div>
       </section>
 
-      <!-- About -->
-      <section id="about" class="section">
-        <div class="container two-col">
-          <div>
-            <h2 class="section-title">About Adham</h2>
-            <p class="section-lede">
-              A wedding deserves a grand arrival. We provide luxury wedding car rentals designed for
-              elegance, comfort, and flawless timing.
-            </p>
-            <p class="muted">
-              Our chauffeurs are trained for wedding-day coordination—calm, punctual, and
-              professional. Expect pristine vehicles, premium interiors, and a smooth experience from
-              pickup to drop-off.
-            </p>
-          </div>
-
-          <div class="about-panel" role="note" aria-label="What you can expect">
-            <ul class="checklist">
-              <li>Carefully maintained premium sedans</li>
-              <li>Polished, uniformed chauffeurs</li>
-              <li>Flexible hourly packages for events & photos</li>
-              <li>Wedding décor option (ribbons/flowers) on request</li>
-              <li>Clear pricing with no surprises</li>
-            </ul>
-            <a class="btn btn-outline" href="#booking">Book a Wedding Car</a>
-          </div>
-        </div>
-      </section>
-
       <!-- Our Cars -->
-      <section id="cars" class="section section-alt">
+      <section id="cars" class="section section-alt" data-service-visible="wedding">
         <div class="container">
           <div class="section-head">
             <h2 class="section-title">Our Cars</h2>
@@ -191,16 +260,23 @@
       </section>
 
       <!-- Booking -->
-      <section id="booking" class="section">
+      <section id="booking" class="section" data-service-visible="wedding,taxi,travellers,drivers">
         <div class="container">
           <div class="section-head">
-            <h2 class="section-title">Book a Ride</h2>
-            <p class="section-lede muted">
+            <h2 class="section-title" id="bookingTitle">Book a Ride</h2>
+            <p class="section-lede muted" id="bookingLede">
               Start with your trip details. Next, choose your vehicle. Finally, confirm your request.
             </p>
           </div>
 
-          <div class="flow">
+          <div class="service-panels" id="servicePanels">
+            <section
+              id="service-wedding"
+              class="service-panel service-panel-active"
+              data-service-panel="wedding"
+              aria-label="Wedding rentals booking"
+            >
+              <div class="flow">
             <div class="flow-steps" aria-label="Booking steps">
               <div class="step step-active" data-step="1">
                 <span class="step-dot" aria-hidden="true"></span>
@@ -396,18 +472,421 @@
                       <p class="muted">
                         Call us and we’ll guide you through the best car and package for your event.
                       </p>
-                      <a class="btn btn-outline btn-full" href="tel:+910000000000">Call Now</a>
+                      <a class="btn btn-outline btn-full" href="tel:+919995795321">Call Now</a>
                     </div>
                   </aside>
                 </div>
               </section>
             </div>
           </div>
+            </section>
+
+            <section
+              id="service-taxi"
+              class="service-panel"
+              data-service-panel="taxi"
+              aria-label="Taxi booking"
+            >
+              <div class="service-panel-inner">
+                <div class="service-visual service-visual-taxi" aria-hidden="true"></div>
+                <form id="taxiForm" class="form" novalidate>
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="taxiFullName">Full Name</label>
+                      <input
+                        id="taxiFullName"
+                        name="taxiFullName"
+                        type="text"
+                        autocomplete="name"
+                        required
+                      />
+                      <p class="field-error" data-error-for="taxiFullName"></p>
+                    </div>
+
+                    <div class="field">
+                      <label for="taxiPhone">Phone Number</label>
+                      <input
+                        id="taxiPhone"
+                        name="taxiPhone"
+                        type="tel"
+                        inputmode="tel"
+                        autocomplete="tel"
+                        placeholder="e.g. 9876543210"
+                        required
+                      />
+                      <p class="field-error" data-error-for="taxiPhone"></p>
+                    </div>
+                  </div>
+
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="taxiStartLocation">From</label>
+                      <input
+                        id="taxiStartLocation"
+                        name="taxiStartLocation"
+                        type="text"
+                        autocomplete="street-address"
+                        required
+                      />
+                      <p class="field-error" data-error-for="taxiStartLocation"></p>
+                    </div>
+
+                    <div class="field">
+                      <label for="taxiEndLocation">To</label>
+                      <input
+                        id="taxiEndLocation"
+                        name="taxiEndLocation"
+                        type="text"
+                        required
+                      />
+                      <p class="field-error" data-error-for="taxiEndLocation"></p>
+                    </div>
+                  </div>
+
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="taxiEventDate">Event Date</label>
+                      <input id="taxiEventDate" name="taxiEventDate" type="date" required />
+                      <p class="field-error" data-error-for="taxiEventDate"></p>
+                    </div>
+
+                    <div class="field">
+                      <label for="taxiPickupTime">Pickup Time</label>
+                      <input
+                        id="taxiPickupTime"
+                        name="taxiPickupTime"
+                        type="time"
+                        required
+                      />
+                      <p class="field-error" data-error-for="taxiPickupTime"></p>
+                    </div>
+                  </div>
+
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="taxiType">Taxi Type</label>
+                      <select id="taxiType" name="taxiType" required>
+                        <option value="" selected disabled>Select</option>
+                        <option value="sedan">Sedan</option>
+                        <option value="suv">SUV</option>
+                        <option value="mini-van">Mini Van</option>
+                      </select>
+                      <p class="field-error" data-error-for="taxiType"></p>
+                    </div>
+
+                    <div class="field">
+                      <label for="taxiHours">Trip Duration (Hours)</label>
+                      <input
+                        id="taxiHours"
+                        name="taxiHours"
+                        type="number"
+                        min="1"
+                        step="1"
+                        placeholder="e.g. 4"
+                        required
+                      />
+                      <p class="field-error" data-error-for="taxiHours"></p>
+                    </div>
+                  </div>
+
+                  <div class="form-actions">
+                    <button class="btn btn-gold" type="submit">Request Taxi</button>
+                    <p class="form-note muted">We will confirm availability shortly.</p>
+                  </div>
+
+                  <p
+                    id="taxiRequestResult"
+                    class="request-result"
+                    role="status"
+                    aria-live="polite"
+                  ></p>
+                  <a
+                    id="taxiWhatsApp"
+                    class="btn btn-gold btn-full"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    hidden
+                  >
+                    WhatsApp Quote
+                  </a>
+                </form>
+              </div>
+            </section>
+
+            <section
+              id="service-travellers"
+              class="service-panel"
+              data-service-panel="travellers"
+              aria-label="Travellers and Airbuses booking"
+            >
+              <div class="service-panel-inner">
+                <div class="service-visual service-visual-travellers" aria-hidden="true"></div>
+                <form id="travellerForm" class="form" novalidate>
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="travellerFullName">Full Name</label>
+                      <input
+                        id="travellerFullName"
+                        name="travellerFullName"
+                        type="text"
+                        autocomplete="name"
+                        required
+                      />
+                      <p class="field-error" data-error-for="travellerFullName"></p>
+                    </div>
+
+                    <div class="field">
+                      <label for="travellerPhone">Phone Number</label>
+                      <input
+                        id="travellerPhone"
+                        name="travellerPhone"
+                        type="tel"
+                        inputmode="tel"
+                        autocomplete="tel"
+                        placeholder="e.g. 9876543210"
+                        required
+                      />
+                      <p class="field-error" data-error-for="travellerPhone"></p>
+                    </div>
+                  </div>
+
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="travellerStartLocation">From</label>
+                      <input
+                        id="travellerStartLocation"
+                        name="travellerStartLocation"
+                        type="text"
+                        autocomplete="street-address"
+                        required
+                      />
+                      <p class="field-error" data-error-for="travellerStartLocation"></p>
+                    </div>
+
+                    <div class="field">
+                      <label for="travellerEndLocation">To</label>
+                      <input
+                        id="travellerEndLocation"
+                        name="travellerEndLocation"
+                        type="text"
+                        required
+                      />
+                      <p class="field-error" data-error-for="travellerEndLocation"></p>
+                    </div>
+                  </div>
+
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="travellerEventDate">Event Date</label>
+                      <input
+                        id="travellerEventDate"
+                        name="travellerEventDate"
+                        type="date"
+                        required
+                      />
+                      <p class="field-error" data-error-for="travellerEventDate"></p>
+                    </div>
+
+                    <div class="field">
+                      <label for="travellerPickupTime">Pickup Time</label>
+                      <input
+                        id="travellerPickupTime"
+                        name="travellerPickupTime"
+                        type="time"
+                        required
+                      />
+                      <p class="field-error" data-error-for="travellerPickupTime"></p>
+                    </div>
+                  </div>
+
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="travellerSeats">Seats Range (18–49)</label>
+                      <select id="travellerSeats" name="travellerSeats" required>
+                        <option value="" selected disabled>Select</option>
+                        <option value="18-26">18-26 Seats</option>
+                        <option value="27-35">27-35 Seats</option>
+                        <option value="36-45">36-45 Seats</option>
+                        <option value="46-49">46-49 Seats</option>
+                      </select>
+                      <p class="field-error" data-error-for="travellerSeats"></p>
+                    </div>
+
+                    <div class="field">
+                      <label for="travellerHours">Trip Duration (Hours)</label>
+                      <input
+                        id="travellerHours"
+                        name="travellerHours"
+                        type="number"
+                        min="1"
+                        step="1"
+                        placeholder="e.g. 6"
+                        required
+                      />
+                      <p class="field-error" data-error-for="travellerHours"></p>
+                    </div>
+                  </div>
+
+                  <div class="form-actions">
+                    <button class="btn btn-gold" type="submit">Request Seats</button>
+                    <p class="form-note muted">We will confirm the best bus/airbus.</p>
+                  </div>
+
+                  <p
+                    id="travellerRequestResult"
+                    class="request-result"
+                    role="status"
+                    aria-live="polite"
+                  ></p>
+                  <a
+                    id="travellerWhatsApp"
+                    class="btn btn-gold btn-full"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    hidden
+                  >
+                    WhatsApp Quote
+                  </a>
+                </form>
+              </div>
+            </section>
+
+            <section
+              id="service-drivers"
+              class="service-panel"
+              data-service-panel="drivers"
+              aria-label="Drivers and chauffeurs booking"
+            >
+              <div class="service-panel-inner">
+                <div class="service-visual service-visual-chauffeur" aria-hidden="true"></div>
+                <form id="driverForm" class="form" novalidate>
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="driverFullName">Full Name</label>
+                      <input
+                        id="driverFullName"
+                        name="driverFullName"
+                        type="text"
+                        autocomplete="name"
+                        required
+                      />
+                      <p class="field-error" data-error-for="driverFullName"></p>
+                    </div>
+
+                    <div class="field">
+                      <label for="driverPhone">Phone Number</label>
+                      <input
+                        id="driverPhone"
+                        name="driverPhone"
+                        type="tel"
+                        inputmode="tel"
+                        autocomplete="tel"
+                        placeholder="e.g. 9876543210"
+                        required
+                      />
+                      <p class="field-error" data-error-for="driverPhone"></p>
+                    </div>
+                  </div>
+
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="driverStartLocation">From</label>
+                      <input
+                        id="driverStartLocation"
+                        name="driverStartLocation"
+                        type="text"
+                        autocomplete="street-address"
+                        required
+                      />
+                      <p class="field-error" data-error-for="driverStartLocation"></p>
+                    </div>
+
+                    <div class="field">
+                      <label for="driverEndLocation">To</label>
+                      <input
+                        id="driverEndLocation"
+                        name="driverEndLocation"
+                        type="text"
+                        required
+                      />
+                      <p class="field-error" data-error-for="driverEndLocation"></p>
+                    </div>
+                  </div>
+
+                  <div class="grid-2">
+                    <div class="field">
+                      <label for="driverDays">Number of Days</label>
+                      <input
+                        id="driverDays"
+                        name="driverDays"
+                        type="number"
+                        min="1"
+                        step="1"
+                        placeholder="e.g. 3"
+                        required
+                      />
+                      <p class="field-error" data-error-for="driverDays"></p>
+                    </div>
+
+                    <div class="field">
+                      <label for="driverDistanceKm">Distance (KM)</label>
+                      <input
+                        id="driverDistanceKm"
+                        name="driverDistanceKm"
+                        type="number"
+                        min="1"
+                        step="1"
+                        placeholder="e.g. 120"
+                        required
+                      />
+                      <p class="field-error" data-error-for="driverDistanceKm"></p>
+                    </div>
+                  </div>
+
+                  <div class="grid-2">
+                    <div class="field" style="grid-column: span 2">
+                      <label for="driverVehicleNote">Your Private Vehicle (Optional)</label>
+                      <input
+                        id="driverVehicleNote"
+                        name="driverVehicleNote"
+                        type="text"
+                        placeholder="e.g. Toyota Innova (or simply 'Private Vehicle')"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-actions">
+                    <button class="btn btn-gold" type="submit">Request Chauffeur</button>
+                    <p class="form-note muted">Booked based on days and distance.</p>
+                  </div>
+
+                  <p
+                    id="driverRequestResult"
+                    class="request-result"
+                    role="status"
+                    aria-live="polite"
+                  ></p>
+                  <a
+                    id="driverWhatsApp"
+                    class="btn btn-gold btn-full"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    hidden
+                  >
+                    WhatsApp Quote
+                  </a>
+                </form>
+              </div>
+            </section>
+          </div>
         </div>
       </section>
 
       <!-- Pricing -->
-      <section id="pricing" class="section section-alt">
+      <section id="pricing" class="section section-alt" data-service-visible="wedding">
         <div class="container">
           <div class="section-head">
             <h2 class="section-title">Pricing</h2>
@@ -452,26 +931,26 @@
       </section>
 
       <!-- Contact -->
-      <section id="contact" class="section">
+      <section id="contact" class="section" data-service-visible="wedding,taxi,travellers,drivers">
         <div class="container contact-grid">
           <div>
-            <h2 class="section-title">Contact</h2>
-            <p class="section-lede muted">
+            <h2 class="section-title" id="contactTitle">Contact</h2>
+            <p class="section-lede muted" id="contactLede">
               Tell us your date and route—we’ll recommend the best car and confirm availability.
             </p>
             <div class="contact-cards">
-              <a class="contact-card" href="tel:+910000000000">
+              <a class="contact-card" href="tel:+919995795321">
                 <span class="contact-icon" aria-hidden="true">☎</span>
                 <span>
                   <span class="contact-label">Phone</span>
-                  <span class="contact-value">+91 00000 00000</span>
+                  <span class="contact-value">+91 99957 95321</span>
                 </span>
               </a>
-              <a class="contact-card" href="mailto:bookings@adhamweddingcars.com">
+              <a class="contact-card" href="mailto:asish.shajan@gmail.com">
                 <span class="contact-icon" aria-hidden="true">✉</span>
                 <span>
                   <span class="contact-label">Email</span>
-                  <span class="contact-value">bookings@adhamweddingcars.com</span>
+                  <span class="contact-value">asish.shajan@gmail.com</span>
                 </span>
               </a>
             </div>
@@ -499,14 +978,17 @@
 
     <footer class="footer" role="contentinfo">
       <div class="container footer-row">
-        <p class="muted">© Wedding Car Rentals. All Rights Reserved.</p>
+        <div class="footer-brand">
+          <img class="footer-logo" src="images/logo.svg" width="34" height="34" alt="" decoding="async" />
+          <p class="muted">© Adham's Auto World. All Rights Reserved.</p>
+        </div>
         <a class="back-top" href="#home">Back to top</a>
       </div>
     </footer>
 
     <a
       class="whatsapp-float"
-      href="https://wa.me/918281943136?text=Hi%20Adham%2C%20I%27d%20like%20to%20book%20a%20wedding%20car."
+      href="https://wa.me/919995795321?text=Hi%20Adham%2C%20I%27d%20like%20to%20book%20a%20wedding%20car."
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

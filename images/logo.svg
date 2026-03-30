@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Adham's Auto World logo</title>
+  <desc id="desc">Luxury badge style monogram A with wheel mark.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5df9c"/>
+      <stop offset="55%" stop-color="#d4b05f"/>
+      <stop offset="100%" stop-color="#b88d3d"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f2430"/>
+      <stop offset="100%" stop-color="#0f1218"/>
+    </linearGradient>
+  </defs>
+  <rect x="32" y="32" width="448" height="448" rx="120" fill="url(#ink)"/>
+  <rect x="48" y="48" width="416" height="416" rx="104" fill="none" stroke="url(#gold)" stroke-width="14"/>
+  <path d="M256 116l120 280h-55l-24-58H215l-24 58h-55l120-280zm0 96l-26 66h52l-26-66z" fill="url(#gold)"/>
+  <circle cx="256" cy="364" r="36" fill="none" stroke="url(#gold)" stroke-width="12"/>
+  <circle cx="256" cy="364" r="8" fill="url(#gold)"/>
+</svg>
