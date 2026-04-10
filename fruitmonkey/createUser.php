@@ -40,13 +40,11 @@ if ($level === false) {
     exit;
 }
 
-$dbHost = 'localhost';
-$dbUser = 'fruitmonkey_user';
-$dbPass = 'Dmkvx8(U2U(%';
-$dbName = 'fruitmonkey';
+require_once __DIR__ . '/db.php';
 
-$mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
-if ($mysqli->connect_error) {
+try {
+    $mysqli = fruitmonkey_db();
+} catch (Throwable $e) {
     http_response_code(500);
     echo json_encode(['status' => 'ERROR', 'message' => 'Database connection failed.']);
     exit;
