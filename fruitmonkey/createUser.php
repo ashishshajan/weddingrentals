@@ -52,7 +52,7 @@ try {
 }
 
 $sql = 'INSERT INTO users (name, platform, os, level, points, created_at, updated_at)
-        VALUES (?, ?, ?, ?, NOW(), NOW())';
+        VALUES (?, ?, ?, ?, ?, NOW(), NOW())';
 
 $stmt = $mysqli->prepare($sql);
 if (!$stmt) {
