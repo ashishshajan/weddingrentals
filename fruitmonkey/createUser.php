@@ -26,6 +26,7 @@ $name = trim((string)($data['name'] ?? ''));
 $platform = trim((string)($data['platform'] ?? ''));
 $os = trim((string)($data['os'] ?? ''));
 $levelRaw = $data['level'] ?? null;
+$points = $data['points'] ?? 0;
 
 if ($name === '' || $platform === '' || $os === '' || $levelRaw === null || $levelRaw === '') {
     http_response_code(422);
@@ -50,7 +51,7 @@ try {
     exit;
 }
 
-$sql = 'INSERT INTO users (name, platform, os, level, created_at, updated_at)
+$sql = 'INSERT INTO users (name, platform, os, level, points, created_at, updated_at)
         VALUES (?, ?, ?, ?, NOW(), NOW())';
 
 $stmt = $mysqli->prepare($sql);
@@ -61,7 +62,7 @@ if (!$stmt) {
     exit;
 }
 
-$stmt->bind_param('sssi', $name, $platform, $os, $level);
+$stmt->bind_param('sssi', $name, $platform, $os, $level, $points);
 
 if (!$stmt->execute()) {
     $stmt->close();
