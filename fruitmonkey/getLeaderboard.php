@@ -27,7 +27,7 @@ if (isset($_GET['limit'])) {
 }
 $limit = max(1, min(500, $limit));
 
-$sql = "SELECT id, name, platform, os, level, created_at, updated_at
+$sql = "SELECT id, name, platform, os, level, points
         FROM users
         ORDER BY level DESC, id DESC
         LIMIT ?";
@@ -56,6 +56,7 @@ if ($result) {
     while ($row = $result->fetch_assoc()) {
         $row['id'] = (int)$row['id'];
         $row['level'] = (int)$row['level'];
+        $row['points'] = (int)$row['points'];
         $rows[] = $row;
     }
 }
