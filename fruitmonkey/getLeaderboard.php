@@ -29,7 +29,7 @@ $limit = max(1, min(500, $limit));
 
 $sql = "SELECT id, name, platform, os, level, points
         FROM users
-        ORDER BY level DESC, id DESC
+        ORDER BY level DESC, points DESC, id DESC
         LIMIT ?";
 
 $stmt = $mysqli->prepare($sql);
