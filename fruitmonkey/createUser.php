@@ -62,7 +62,7 @@ if (!$stmt) {
     exit;
 }
 
-$stmt->bind_param('sssi', $name, $platform, $os, $level, $points);
+$stmt->bind_param('sssis', $name, $platform, $os, $level, $points);
 
 if (!$stmt->execute()) {
     $stmt->close();
