@@ -124,18 +124,30 @@ if (!$user) {
 $currentLevel = (int) ($user['level'] ?? 0);
 $currentPoints = (int) ($user['points'] ?? 0);
 
-if ($mode === 1 && !($level > $currentLevel && $points > $currentPoints)) {
-    $mysqli->close();
-    echo json_encode([
-        'status' => true,
-        'message' => 'Update skipped. level and points must both be greater than existing values.',
-        'data' => [
-            'id' => $id,
-            'current_level' => $currentLevel,
-            'current_points' => $currentPoints,
-        ],
-    ]);
-    exit;
+$levelToUpdate = $currentLevel;
+$pointsToUpdate = $currentPoints;
+
+if ($mode === 1) {
+    if ($level > $currentLevel) {
+        $levelToUpdate = $level;
+    }
+    if ($points > $currentPoints) {
+        $pointsToUpdate = $points;
+    }
+
+    if ($levelToUpdate === $currentLevel && $pointsToUpdate === $currentPoints) {
+        $mysqli->close();
+        echo json_encode([
+            'status' => true,
+            'message' => 'Update skipped. level and points are not greater than existing values.',
+            'data' => [
+                'id' => $id,
+                'current_level' => $currentLevel,
+                'current_points' => $currentPoints,
+            ],
+        ]);
+        exit;
+    }
 }
 
 if ($mode === 2 && !($points > $currentPoints)) {
@@ -164,7 +176,7 @@ if ($mode === 1) {
         exit;
     }
 
-    $stmt->bind_param('iii', $level, $points, $id);
+    $stmt->bind_param('iii', $levelToUpdate, $pointsToUpdate, $id);
 } else {
     $sql = 'UPDATE users
             SET points = ?, updated_at = NOW()
@@ -198,7 +210,7 @@ echo json_encode([
     'data' => [
         'id' => $id,
         'mode' => $mode,
-        'level' => $mode === 1 ? $level : $currentLevel,
-        'points' => $points,
+        'level' => $mode === 1 ? $levelToUpdate : $currentLevel,
+        'points' => $mode === 1 ? $pointsToUpdate : $points,
     ],
 ]);
