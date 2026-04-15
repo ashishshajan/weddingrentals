@@ -167,6 +167,5 @@ echo json_encode([
     'message' => 'User updated successfully.',
     'id' => $id,
     'mode' => $mode,
-    'level' => $mode === 1 ? $level : null,
     'points' => $points,
 ]);
