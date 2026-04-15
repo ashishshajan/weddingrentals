@@ -5,7 +5,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    echo json_encode(['status' => 'ERROR', 'message' => 'Method not allowed.']);
+    echo json_encode(['status' => false, 'message' => 'Method not allowed.']);
     exit;
 }
 
@@ -18,28 +18,19 @@ if (!is_array($data) || $data === []) {
 
 if (!is_array($data)) {
     http_response_code(400);
-    echo json_encode(['status' => 'ERROR', 'message' => 'Invalid request payload.']);
+    echo json_encode(['status' => false, 'message' => 'Invalid request payload.']);
     exit;
 }
 
-$name = trim((string)($data['name'] ?? ''));
-$platform = trim((string)($data['platform'] ?? ''));
-$os = trim((string)($data['os'] ?? ''));
-$levelRaw = $data['level'] ?? null;
-$points = $data['points'] ?? 0;
+$os = $data['os'] ?? null;
+$device = $data['device'] ?? null;
 
-if ($name === '' || $platform === '' || $os === '' || $levelRaw === null || $levelRaw === '') {
+if ($os === null || $device === null) {
     http_response_code(422);
-    echo json_encode(['status' => 'ERROR', 'message' => 'name, platform, os, and level are required.']);
+    echo json_encode(['status' => false, 'message' => 'os and device are required.']);
     exit;
 }
 
-$level = filter_var($levelRaw, FILTER_VALIDATE_INT);
-if ($level === false) {
-    http_response_code(422);
-    echo json_encode(['status' => 'ERROR', 'message' => 'level must be an integer.']);
-    exit;
-}
 
 require_once __DIR__ . '/db.php';
 
@@ -47,28 +38,57 @@ try {
     $mysqli = fruitmonkey_db();
 } catch (Throwable $e) {
     http_response_code(500);
-    echo json_encode(['status' => 'ERROR', 'message' => 'Database connection failed.']);
+    echo json_encode(['status' => false, 'message' => 'Database connection failed.']);
     exit;
 }
 
-$sql = 'INSERT INTO users (name, platform, os, level, points, created_at, updated_at)
-        VALUES (?, ?, ?, ?, ?, NOW(), NOW())';
+$checkSql = 'SELECT id FROM users WHERE device = ? LIMIT 1';
+$checkStmt = $mysqli->prepare($checkSql);
+if (!$checkStmt) {
+    $mysqli->close();
+    http_response_code(500);
+    echo json_encode(['status' => false, 'message' => 'Failed to prepare database query.']);
+    exit;
+}
+
+$checkStmt->bind_param('s', $device);
+
+if (!$checkStmt->execute()) {
+    $checkStmt->close();
+    $mysqli->close();
+    http_response_code(500);
+    echo json_encode(['status' => false, 'message' => 'Failed to validate device uniqueness.']);
+    exit;
+}
+
+$existing = $checkStmt->get_result();
+if ($existing && $existing->fetch_assoc()) {
+    $checkStmt->close();
+    $mysqli->close();
+    http_response_code(409);
+    echo json_encode(['status' => false, 'message' => 'Device already exists.']);
+    exit;
+}
+$checkStmt->close();
+
+$sql = 'INSERT INTO users (os, device, created_at, updated_at)
+        VALUES (?, ?,  NOW(), NOW())';
 
 $stmt = $mysqli->prepare($sql);
 if (!$stmt) {
     $mysqli->close();
     http_response_code(500);
-    echo json_encode(['status' => 'ERROR', 'message' => 'Failed to prepare database query.']);
+    echo json_encode(['status' => false, 'message' => 'Failed to prepare database query.']);
     exit;
 }
 
-$stmt->bind_param('sssis', $name, $platform, $os, $level, $points);
+$stmt->bind_param('ss', $os, $device);
 
 if (!$stmt->execute()) {
     $stmt->close();
     $mysqli->close();
     http_response_code(500);
-    echo json_encode(['status' => 'ERROR', 'message' => 'Failed to save user.']);
+    echo json_encode(['status' => false, 'message' => 'Failed to save user.']);
     exit;
 }
 
@@ -77,6 +97,9 @@ $stmt->close();
 $mysqli->close();
 
 echo json_encode([
-    'status' => 'OK',
-    'id' => $newId,
+    'status' => true,
+    'message' => 'User created successfully.',
+    'data' => [
+        'user_id' => $newId,
+    ],
 ]);
