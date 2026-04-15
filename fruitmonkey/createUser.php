@@ -62,11 +62,17 @@ if (!$checkStmt->execute()) {
 }
 
 $existing = $checkStmt->get_result();
-if ($existing && $existing->fetch_assoc()) {
+$existingUser = $existing ? $existing->fetch_assoc() : null;
+if ($existingUser) {
     $checkStmt->close();
     $mysqli->close();
-    http_response_code(409);
-    echo json_encode(['status' => false, 'message' => 'Device already exists.']);
+    echo json_encode([
+        'status' => true,
+        'message' => 'Device already exists.',
+        'data' => [
+            'user_id' => (int) $existingUser['id'],
+        ],
+    ]);
     exit;
 }
 $checkStmt->close();
