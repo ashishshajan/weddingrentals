@@ -256,6 +256,7 @@ function setupFlow() {
   const backToVehicles = $("#backToVehicles");
   const requestBooking = $("#requestBooking");
   const requestResult = $("#requestResult");
+  let isSubmittingBooking = false;
 
   // Clear errors on input
   $all("#tripForm input").forEach((input) => {
@@ -313,21 +314,59 @@ function setupFlow() {
     scrollToBooking();
   });
 
-  requestBooking?.addEventListener("click", () => {
+  requestBooking?.addEventListener("click", async () => {
     const trip = state.trip;
     const vehicle = VEHICLES.find((v) => v.id === state.selectedVehicleId);
-    if (!trip || !vehicle) return;
+    if (!trip || !vehicle || isSubmittingBooking) return;
 
-    // Demo “request” (no backend). Present a premium confirmation message.
     const base = vehicle.ratePerHour * trip.hours;
-    const message = [
-      "Request received.",
-      `We’ll contact ${trip.fullName} shortly to confirm availability for ${trip.eventDate} at ${trip.pickupTime}.`,
-      `Selected: ${vehicle.name} • Estimated: ${formatINR(base)}.`,
-    ].join(" ");
+    const payload = {
+      serviceType: "wedding",
+      fullName: trip.fullName,
+      phone: trip.phone,
+      email: trip.email,
+      eventDate: trip.eventDate,
+      startLocation: trip.startLocation,
+      endLocation: trip.endLocation,
+      pickupTime: trip.pickupTime,
+      hours: trip.hours,
+      vehicleId: vehicle.id,
+      vehicleName: vehicle.name,
+      estimatedTotal: base,
+    };
 
-    requestResult.textContent = message;
-    requestResult.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    isSubmittingBooking = true;
+    requestBooking.disabled = true;
+    requestResult.textContent = "Submitting your booking request...";
+
+    try {
+      const response = await fetch("submit_booking.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Unable to submit booking right now.");
+      }
+
+      const message = [
+        "Request received.",
+        `We’ll contact ${trip.fullName} shortly to confirm availability for ${trip.eventDate} at ${trip.pickupTime}.`,
+        `Selected: ${vehicle.name} • Estimated: ${formatINR(base)}.`,
+      ].join(" ");
+      requestResult.textContent = message;
+    } catch (error) {
+      requestResult.textContent =
+        error?.message || "Sorry, your booking could not be submitted. Please try again.";
+    } finally {
+      isSubmittingBooking = false;
+      requestBooking.disabled = false;
+      requestResult.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
   });
 }
 
