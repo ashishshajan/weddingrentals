@@ -4,9 +4,9 @@ declare(strict_types=1);
 function fruitmonkey_db(): mysqli
 {
     $dbHost = 'localhost';
-    $dbUser = 'fruitmonkey_user';
+    $dbUser = 'adhamsworld_user';
     $dbPass = 'GgsT($cBFZ8C';
-    $dbName = 'fruitmonkey';
+    $dbName = 'adhamsworld';
 
     $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
     if ($mysqli->connect_error) {
