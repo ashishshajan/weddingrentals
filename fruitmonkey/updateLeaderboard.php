@@ -92,7 +92,7 @@ try {
     exit;
 }
 
-$checkStmt = $mysqli->prepare('SELECT id, level, points FROM users WHERE id = ? LIMIT 1');
+$checkStmt = $mysqli->prepare('SELECT id, level, points FROM fruitmonkey_users WHERE id = ? LIMIT 1');
 if (!$checkStmt) {
     $mysqli->close();
     http_response_code(500);
@@ -164,7 +164,7 @@ if ($mode === 2 && !($points > $currentPoints)) {
 }
 
 if ($mode === 1) {
-    $sql = 'UPDATE users
+    $sql = 'UPDATE fruitmonkey_users
             SET level = ?, points = ?, updated_at = NOW()
             WHERE id = ?';
 
@@ -178,7 +178,7 @@ if ($mode === 1) {
 
     $stmt->bind_param('iii', $levelToUpdate, $pointsToUpdate, $id);
 } else {
-    $sql = 'UPDATE users
+    $sql = 'UPDATE fruitmonkey_users
             SET points = ?, updated_at = NOW()
             WHERE id = ?';
 

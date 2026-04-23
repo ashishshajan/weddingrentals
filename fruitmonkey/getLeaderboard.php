@@ -48,7 +48,7 @@ if (isset($_GET['limit'])) {
 $limit = max(1, min(500, $limit));
 
 $sql = "SELECT id, name, level, points
-        FROM users
+        FROM fruitmonkey_users
         ORDER BY level DESC, points DESC, id DESC
         LIMIT ?";
 

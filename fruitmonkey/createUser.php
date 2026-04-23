@@ -42,7 +42,7 @@ try {
     exit;
 }
 
-$checkSql = 'SELECT id FROM users WHERE device = ? LIMIT 1';
+$checkSql = 'SELECT id FROM fruitmonkey_users WHERE device = ? LIMIT 1';
 $checkStmt = $mysqli->prepare($checkSql);
 if (!$checkStmt) {
     $mysqli->close();
@@ -77,7 +77,7 @@ if ($existingUser) {
 }
 $checkStmt->close();
 
-$sql = 'INSERT INTO users (os, device, created_at, updated_at)
+$sql = 'INSERT INTO fruitmonkey_users (os, device, created_at, updated_at)
         VALUES (?, ?,  NOW(), NOW())';
 
 $stmt = $mysqli->prepare($sql);

@@ -55,7 +55,7 @@ try {
     exit;
 }
 
-$checkStmt = $mysqli->prepare('SELECT id FROM users WHERE id = ? LIMIT 1');
+$checkStmt = $mysqli->prepare('SELECT id FROM fruitmonkey_users WHERE id = ? LIMIT 1');
 if (!$checkStmt) {
     $mysqli->close();
     http_response_code(500);
@@ -83,7 +83,7 @@ if (!$user) {
     exit;
 }
 
-$stmt = $mysqli->prepare('UPDATE users SET name = ?, emoji = ?, updated_at = NOW() WHERE id = ?');
+$stmt = $mysqli->prepare('UPDATE fruitmonkey_users SET name = ?, emoji = ?, updated_at = NOW() WHERE id = ?');
 if (!$stmt) {
     $mysqli->close();
     http_response_code(500);
