@@ -64,7 +64,7 @@ if ($mysqli->connect_error) {
     exit;
 }
 
-$sql = "INSERT INTO enquiry (
+$sql = "INSERT INTO adhamsworld_enquiry (
     fullName,
     phone,
     email,
