@@ -49,7 +49,7 @@ if (
     exit;
 }
 
-$dbHost = '127.0.0.1';
+$dbHost = 'localhost';
 $dbUser = 'adhamsworld_user';
 $dbPass = 'GgsT($cBFZ8C';
 $dbName = 'adhamsworld';
