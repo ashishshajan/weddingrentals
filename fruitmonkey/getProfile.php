@@ -46,8 +46,9 @@ try {
     exit;
 }
 
-$sql = 'SELECT * FROM users WHERE id = ? LIMIT 1';
+$sql = 'SELECT * FROM fruitmonkey_users WHERE id = ? LIMIT 1';
 $stmt = $mysqli->prepare($sql);
+
 if (!$stmt) {
     $mysqli->close();
     http_response_code(500);
